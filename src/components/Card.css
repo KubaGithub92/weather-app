@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  background-color: aqua;
+  width: 25%;
+}
+
+.card__top{
+  margin: 0 auto;
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.card__top-city{
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.card__top-temp{
+  font-size: 2.4rem;
+}
+
+.card__top-degrees{
+  display: flex;
+  gap: 1em;
+  width: 100%;
+}
