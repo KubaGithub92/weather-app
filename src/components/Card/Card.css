@@ -1,0 +1,48 @@
+.card {
+  width: 50%;
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  background-color: lightsalmon;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.card__top{
+  margin: 0 auto;
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.card__top-city{
+  font-size: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+
+.card__top-day{
+  font-size: 2.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.card__top-temp{
+  font-size: 3.2rem;
+  margin-top: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__top-degrees{
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  width: 100%;
+}
+
+.card__border{
+  width: 80%;
+  height: 3px;
+  background-color: #fff;
+  margin: 1em auto;
+}
