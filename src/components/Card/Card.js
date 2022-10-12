@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Card.css'
 import { CloudSun, CloudLightning, Sun, Snowflake, Lightning,CloudRain ,CloudFog, CloudMoon,Cloud,Moon,Wind,ThermometerCold,ThermometerHot,ThermometerSimple } from "phosphor-react";
-
+import '../RenderIcon/RenderIcon'
 
 // creating card component
 export default function Card() {
@@ -26,15 +26,32 @@ export default function Card() {
       const res = await fetch (`https://api.openweathermap.org/data/2.5/weather?lat=${+lat}&lon=${+lon}&appid=2fbfbc253342eb2b91b2823c547a3b12`)
       const data =  await res.json();
       setWeatherData(data);
-      setWeatherLoaded(true)
+      setWeatherLoaded(true);
+    }
+
+    // If latitude and longitude is set, then get weather data    
+    if(lat && lon){
+      getWeather();
+      console.log(weatherData)
     }
 
 
-  if(lat && lon){
-    getWeather();
-    console.log(weatherData);
-    }
+
   },[lat,lon])
+
+      // If weather data are fetched, then get the correct icon
+    const RenderIcon = (props)=>{
+      if(props.weatherData === 'Clouds'){
+        return <Cloud/>
+      }
+      if(props.weatherData === "Clear"){
+        return <Sun/>
+      }
+      if(props.weatherData === "Snow"){
+        return <Snowflake/>
+      }
+    }
+
 
   // getting todays date
   const today = () =>{
@@ -68,7 +85,9 @@ export default function Card() {
       weekDay = "Saturday";
       break;
   }
-  console.log(weekDay);
+
+
+  
 
   return (
     <>
@@ -78,8 +97,8 @@ export default function Card() {
       <div className="card__top">
         <div className='card__top-day'>{weekDay}</div>
         <div className='card__top-city'>{weatherData.name}</div>
-        <Sun size={240} />
-        {/* <div className="card__top-weather">{weatherData.weather[0].description}</div> */}
+        <RenderIcon weatherData={weatherData.weather[0].main}/>
+        {/* <div className="card__top-weather">{weatherData.weather[0].main}</div> */}
         <div className='card__top-temp'>
           <ThermometerSimple size={24}/>
           <div className='card__top-temp-deg'>{Math.round(weatherData.main.temp-absoluteZero)}°C</div>
